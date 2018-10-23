@@ -66,12 +66,12 @@ DEALINGS IN THE SOFTWARE.
   function draggThis(eve){
     var selectorString = $('#selectorInput').val();
     if(!selectorString)return;
-    $(selectorString).draggable();
+    $(selectorString).draggable({drag: function() {$('#dndrQueryForm').html('left:'+$(this).left()+'px;top:'+$(this).top()+'px')}});
   }
 
   function initMyBookmarklet() {
     (window.draggableBookmarklet = function() {
-      $('<div id=dndrQueryForm style="font-family:sans-serif;width:425px;padding:5px 10px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;background:#f0f0f0;position:fixed;top:0px;left:50%;border:1px solid #999;border-top:none;-webkit-box-shadow:2px 2px 4px rgba(0, 0, 0, 0.3);-moz-box-shadow:2px 2px 4px rgba(0, 0, 0, 0.3);box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);z-index:990;"><label>selector: <strong>$(&apos;</strong><input type=text id=selectorInput value="*:absolute"><strong>&apos;).</strong></label> <button id=makeElementsDnDble style="float: right;">make Draggable!</button></div>').appendTo('body').on('click','#makeElementsDnDble',draggThis);
+      $('<div id=dndrQueryForm style="font-family:sans-serif;width:425px;padding:5px 10px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;background:#f0f0f0;position:fixed;top:0px;left:0%;border:1px solid #999;border-top:none;-webkit-box-shadow:2px 2px 4px rgba(0, 0, 0, 0.3);-moz-box-shadow:2px 2px 4px rgba(0, 0, 0, 0.3);box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);z-index:990;"><label>selector: <strong>$(&apos;</strong><input type=text id=selectorInput value="*"><strong>&apos;).</strong></label> <button id=makeElementsDnDble style="float: right;">make Draggable!</button></div>').appendTo('body').on('click','#makeElementsDnDble',draggThis);
       $('#dndrQueryForm').draggable({ axis: 'x', addClasses: false });
       $('#selectorInput').keyup(function(eve){
         if(eve.which != 13)return;
