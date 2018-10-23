@@ -66,7 +66,7 @@ DEALINGS IN THE SOFTWARE.
   function draggThis(eve){
     var selectorString = $('#selectorInput').val();
     if(!selectorString)return;
-    $(selectorString).draggable({drag: function() {$('#dndrQueryForm').html('left:'+$(this).left()+'px;top:'+$(this).top()+'px')}});
+    $(selectorString).draggable({drag: function() {var pos = $(this).position();$('#dndrQueryForm').html('left:'+pos.left+'px;top:'+pos.top+'px')}});
   }
 
   function initMyBookmarklet() {
